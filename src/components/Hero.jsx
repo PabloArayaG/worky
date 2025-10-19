@@ -13,7 +13,7 @@ const Hero = () => {
   const words = ["talento", "innovación", "trabajo"]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 pt-8 pb-0 overflow-hidden">
       {/* Radial Gradient Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.15),transparent_50%)]" />
       
@@ -28,40 +28,40 @@ const Hero = () => {
           <div className="relative inline-flex overflow-hidden rounded-full p-[1px]">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#10b981_0%,#34d399_50%,#10b981_100%)]" />
             <div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a1628] px-6 py-2 text-sm font-medium text-white backdrop-blur-3xl">
-              🚀 Próximamente: Tu portal profesional
+              🚀 Próximamente: tu comunidad profesional
             </div>
           </div>
         </motion.div>
 
         {/* Main Heading with Text Generate Effect */}
-        <div className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent">
-              Conecta con empresas
+        <div className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <div className="flex flex-col items-center justify-center max-w-5xl mx-auto">
+            <h1 className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent whitespace-nowrap leading-[1.2]">
+              Conecta con empresas y personas <br />
+              que valoran lo que haces
             </h1>
-            <div className="flex items-center justify-center gap-2 md:gap-3 flex-wrap">
-              <span className="text-foreground">que valoran tu</span>
-              <FlipWords words={words} className="text-emerald-400" duration={2000} />
-            </div>
           </div>
         </div>
 
-        {/* Subtitle with Text Generate */}
-        <TextGenerateEffect
-          words="Crea tu perfil profesional y encuentra oportunidades reales."
-          className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto"
-        />
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-base md:text-lg text-slate-300 mb-8 max-w-5xl mx-auto leading-relaxed"
+        >
+          En Worky creemos que el trabajo es más que un currículum. <br />
+          Creamos un espacio donde el talento y las empresas se encuentran para construir oportunidades reales.
+        </motion.p>
 
         {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg md:text-xl text-slate-300 mb-12 max-w-2xl mx-auto"
+          className="text-lg md:text-xl text-slate-300 mb-6 max-w-2xl mx-auto italic"
         >
-          Estamos construyendo <span className="font-semibold text-emerald-400">Worky</span>.
-          <br />
-          Únete a la lista de espera para acceder antes que nadie.
+          Forma parte del grupo que está dando forma a <span className="font-semibold text-emerald-400">Worky</span> desde el día uno.
         </motion.p>
 
         {/* CTA Button with Hover Border Gradient */}
@@ -99,22 +99,22 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
+          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
         >
           {[
             { value: '100%', label: 'Enfocado en talento' },
-            { value: '0€', label: 'Gratis para quienes se unan primero' },
+            { value: '+10 rubros', label: 'Profesionales de tecnología, diseño, arquitectura, legal y más' },
             { value: '24/7', label: 'Oportunidades reales' },
           ].map((stat, index) => (
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
-              className="p-6 rounded-2xl bg-slate-900/30 backdrop-blur-sm border border-slate-800/50 hover:border-emerald-500/50 transition-all"
+              className="p-8 rounded-2xl bg-slate-900/30 backdrop-blur-sm border border-slate-800/50 hover:border-emerald-500/50 transition-all"
             >
-              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent mb-2">
+              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent mb-4">
                 {stat.value}
               </div>
-              <div className="text-sm md:text-base text-slate-400">
+              <div className="text-sm md:text-base text-slate-400 leading-relaxed">
                 {stat.label}
               </div>
             </motion.div>

@@ -76,13 +76,13 @@ const AppMockup = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 text-slate-200">
+          <h2 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4 text-slate-200 px-4">
             Una plataforma diseñada para{' '}
             <span className="bg-gradient-to-r from-teal-400 to-emerald-500 bg-clip-text text-transparent">
               el talento
             </span>
           </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto px-4">
             Conecta tu talento con oportunidades que realmente importan
           </p>
         </motion.div>

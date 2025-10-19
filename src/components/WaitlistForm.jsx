@@ -81,12 +81,12 @@ const WaitlistForm = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-slate-900/30 backdrop-blur-sm border border-slate-800/50 rounded-3xl p-8 md:p-12 shadow-2xl"
+          className="bg-slate-900/30 backdrop-blur-sm border border-slate-800/50 rounded-3xl p-6 md:p-12 shadow-2xl"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-slate-200">
+          <h2 className="text-2xl md:text-4xl font-bold mb-3 md:mb-4 text-center text-slate-200">
             Únete a la lista de espera
           </h2>
-          <p className="text-slate-400 text-center mb-8">
+          <p className="text-sm md:text-base text-slate-400 text-center mb-6 md:mb-8">
             Sé de los primeros en experimentar Worky
           </p>
 

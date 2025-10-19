@@ -34,13 +34,13 @@ const Hero = () => {
         </motion.div>
 
         {/* Main Heading with Text Generate Effect */}
-        <div className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6">
-          <div className="flex flex-col items-center justify-center max-w-5xl mx-auto">
-            <h1 className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent whitespace-nowrap leading-[1.2]">
+        <div className="mb-6 md:mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center px-4 max-w-5xl mx-auto leading-tight md:leading-[1.4]">
+            <span className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent md:whitespace-nowrap">
               Conecta con empresas y personas <br />
               que valoran lo que haces
-            </h1>
-          </div>
+            </span>
+          </h1>
         </div>
 
         {/* Subtitle */}
@@ -48,10 +48,17 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-base md:text-lg text-slate-300 mb-8 max-w-5xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg md:text-lg text-slate-300 mb-6 md:mb-8 max-w-3xl md:max-w-5xl mx-auto leading-relaxed px-4"
         >
-          En Worky creemos que el trabajo es más que un currículum. <br />
-          Creamos un espacio donde el talento y las empresas se encuentran para construir oportunidades reales.
+          <span className="md:hidden">
+            En Worky creemos que el trabajo es más que un currículum.
+            <br className="mb-2" />
+            Creamos un espacio donde el talento y las empresas se encuentran para construir oportunidades reales.
+          </span>
+          <span className="hidden md:inline">
+            En Worky creemos que el trabajo es más que un currículum. <br />
+            Creamos un espacio donde el talento y las empresas se encuentran para construir oportunidades reales.
+          </span>
         </motion.p>
 
         {/* Description */}
@@ -59,7 +66,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-lg md:text-xl text-slate-300 mb-6 max-w-2xl mx-auto italic"
+          className="text-sm md:text-xl text-slate-300 mb-6 max-w-xs sm:max-w-sm md:max-w-4xl mx-auto italic px-4 md:whitespace-nowrap leading-relaxed"
         >
           Forma parte del grupo que está dando forma a <span className="font-semibold text-emerald-400">Worky</span> desde el día uno.
         </motion.p>
@@ -99,7 +106,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto"
         >
           {[
             { value: '100%', label: 'Enfocado en talento' },
@@ -109,12 +116,12 @@ const Hero = () => {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
-              className="p-8 rounded-2xl bg-slate-900/30 backdrop-blur-sm border border-slate-800/50 hover:border-emerald-500/50 transition-all"
+              className="p-6 md:p-8 rounded-2xl bg-slate-900/30 backdrop-blur-sm border border-slate-800/50 hover:border-emerald-500/50 transition-all"
             >
-              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent mb-4">
+              <div className="text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-green-500 bg-clip-text text-transparent mb-3 md:mb-4">
                 {stat.value}
               </div>
-              <div className="text-sm md:text-base text-slate-400 leading-relaxed">
+              <div className="text-xs md:text-sm lg:text-base text-slate-400 leading-relaxed">
                 {stat.label}
               </div>
             </motion.div>

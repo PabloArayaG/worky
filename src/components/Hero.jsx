@@ -35,11 +35,12 @@ const Hero = () => {
 
         {/* Main Heading with Text Generate Effect */}
         <div className="mb-6 md:mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center px-4 max-w-5xl mx-auto leading-tight md:leading-[1.4]">
-            <span className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent md:whitespace-nowrap">
-              Conecta con empresas y personas <br />
-              que valoran lo que haces
-            </span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center px-4 max-w-5xl mx-auto leading-tight">
+            <div className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent">
+              <div className="md:whitespace-nowrap">Conecta con empresas y personas</div>
+              <div className="hidden md:block h-4"></div>
+              <div className="md:whitespace-nowrap">que valoran lo que haces</div>
+            </div>
           </h1>
         </div>
 

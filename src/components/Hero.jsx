@@ -13,7 +13,7 @@ const Hero = () => {
   const words = ["talento", "innovación", "trabajo"]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 pt-8 pb-0 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 pt-8 pb-0 overflow-visible">
       {/* Radial Gradient Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.15),transparent_50%)]" />
       
@@ -34,8 +34,8 @@ const Hero = () => {
         </motion.div>
 
         {/* Main Heading with Text Generate Effect */}
-        <div className="mb-6 md:mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center px-2 w-full mx-auto leading-tight">
+        <div className="mb-2 md:mb-3 overflow-visible">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center px-2 py-6 w-full mx-auto overflow-visible" style={{lineHeight: '1.2'}}>
             <div>
               <div className="block text-white mb-2 whitespace-nowrap">Worky Latam</div>
               <div className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent">

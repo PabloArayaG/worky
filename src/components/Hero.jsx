@@ -13,7 +13,7 @@ const Hero = () => {
   const words = ["talento", "innovación", "trabajo"]
 
   return (
-    <section className="relative min-h-screen md:min-h-0 flex items-center justify-center px-4 pt-8 pb-8 md:pb-12 overflow-visible">
+    <section className="relative min-h-screen md:min-h-0 flex items-center justify-center px-4 pt-16 md:pt-20 lg:pt-24 pb-8 md:pb-12 overflow-visible">
       {/* Radial Gradient Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.15),transparent_50%)]" />
       

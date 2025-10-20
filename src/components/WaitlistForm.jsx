@@ -9,6 +9,7 @@ const WaitlistForm = () => {
   })
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const dropdownRef = useRef(null)
 
@@ -48,19 +49,55 @@ const WaitlistForm = () => {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
-    if (validateForm()) {
-      // Aquí irá la lógica para enviar a tu backend/Google Sheets/etc
-      console.log('Form submitted:', formData)
-      setSubmitted(true)
+    if (!validateForm()) return
+    
+    setIsSubmitting(true)
+    setErrors({})
+    
+    try {
+      const response = await fetch('/api/join-waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          full_name: formData.name.trim(),
+          email: formData.email.trim(),
+          intent: formData.role,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Error al procesar la solicitud')
+      }
+
+      if (data.ok) {
+        setSubmitted(true)
+        
+        // Reset form after 5 seconds
+        setTimeout(() => {
+          setFormData({ name: '', email: '', role: '' })
+          setSubmitted(false)
+        }, 5000)
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
       
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setFormData({ name: '', email: '', role: '' })
-        setSubmitted(false)
-      }, 3000)
+      // Handle specific error cases
+      if (error.message.includes('email ya está registrado')) {
+        setErrors({ email: 'Este email ya está registrado en nuestra lista de espera' })
+      } else {
+        setErrors({ 
+          general: 'Hubo un error al procesar tu solicitud. Por favor, inténtalo de nuevo.' 
+        })
+      }
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -118,6 +155,12 @@ const WaitlistForm = () => {
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* General Error Message */}
+              {errors.general && (
+                <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20">
+                  <p className="text-red-400 text-sm text-center">{errors.general}</p>
+                </div>
+              )}
               {/* Name Field */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2 text-slate-300">
@@ -225,9 +268,21 @@ const WaitlistForm = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full py-4 px-6 bg-gradient-to-r from-teal-600 to-emerald-600 text-white font-semibold rounded-xl hover:opacity-90 transition-all transform hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
+                disabled={isSubmitting}
+                className={`w-full py-4 px-6 bg-gradient-to-r from-teal-600 to-emerald-600 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-xl ${
+                  isSubmitting 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'hover:opacity-90 transform hover:scale-[1.02] active:scale-[0.98]'
+                }`}
               >
-                Unirme ahora
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Procesando...
+                  </div>
+                ) : (
+                  'Unirme ahora'
+                )}
               </button>
 
               <p className="text-xs text-slate-400 text-center">

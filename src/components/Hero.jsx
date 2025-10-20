@@ -13,7 +13,7 @@ const Hero = () => {
   const words = ["talento", "innovación", "trabajo"]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 pt-8 pb-0 overflow-visible">
+    <section className="relative min-h-screen md:min-h-0 flex items-center justify-center px-4 pt-8 pb-8 md:pb-12 overflow-visible">
       {/* Radial Gradient Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(16,185,129,0.15),transparent_50%)]" />
       
@@ -35,9 +35,9 @@ const Hero = () => {
 
         {/* Main Heading with Text Generate Effect */}
         <div className="mb-2 md:mb-3 overflow-visible">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center px-2 py-6 w-full mx-auto overflow-visible" style={{lineHeight: '1.2'}}>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center px-2 py-6 w-full mx-auto overflow-visible" style={{lineHeight: '1.2'}}>
             <div>
-              <div className="block text-white mb-2 whitespace-nowrap">Worky Latam</div>
+              <div className="block text-white mb-2 md:whitespace-nowrap">Worky Latam</div>
               <div className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent">
                 <div className="block md:whitespace-nowrap">La nueva red profesional</div>
                 <div className="block md:whitespace-nowrap">donde talentos y empresas conectan</div>
@@ -51,17 +51,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-base sm:text-lg md:text-lg text-slate-300 mb-6 md:mb-8 max-w-3xl md:max-w-5xl mx-auto leading-relaxed px-4"
+          className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 mb-4 sm:mb-5 md:mb-6 lg:mb-8 max-w-2xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl mx-auto leading-relaxed px-4"
         >
-          <span className="md:hidden">
-            Worky Latam es la nueva red profesional donde talento y empresas se conectan para crear oportunidades reales.
-            <br className="mb-2" />
-            Únete a la lista de espera y sé parte desde el día uno.
-          </span>
-          <span className="hidden md:inline">
-            Worky Latam es la nueva red profesional donde talento y empresas se conectan para crear oportunidades reales. <br />
-            Únete a la lista de espera y sé parte desde el día uno.
-          </span>
+          Descubre oportunidades laborales auténticas, conecta con empresas <br />
+          que valoran tu experiencia y construye tu futuro profesional.
         </motion.p>
 
         {/* Description */}
@@ -71,7 +64,6 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-sm md:text-xl text-slate-300 mb-6 max-w-xs sm:max-w-sm md:max-w-4xl mx-auto italic px-4 md:whitespace-nowrap leading-relaxed"
         >
-          Forma parte del grupo que está dando forma a <span className="font-semibold text-emerald-400">Worky Latam</span> desde el día uno.
         </motion.p>
 
         {/* CTA Button with Hover Border Gradient */}
@@ -109,7 +101,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto"
+          className="mt-8 sm:mt-10 md:mt-12 lg:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-4xl mx-auto"
         >
           {[
             { value: '100%', label: 'Enfocado en talento' },

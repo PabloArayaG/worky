@@ -28,18 +28,20 @@ const Hero = () => {
           <div className="relative inline-flex overflow-hidden rounded-full p-[1px]">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#10b981_0%,#34d399_50%,#10b981_100%)]" />
             <div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a1628] px-6 py-2 text-sm font-medium text-white backdrop-blur-3xl">
-              🚀 Próximamente: Tu portal profesional
+              🚀 Próximamente: La nueva red profesional
             </div>
           </div>
         </motion.div>
 
         {/* Main Heading with Text Generate Effect */}
         <div className="mb-6 md:mb-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center px-4 max-w-5xl mx-auto leading-tight">
-            <div className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent">
-              <div className="md:whitespace-nowrap">Conecta con empresas y personas</div>
-              <div className="hidden md:block h-4"></div>
-              <div className="md:whitespace-nowrap">que valoran lo que haces</div>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center px-2 w-full mx-auto leading-tight">
+            <div>
+              <div className="block text-white mb-2 whitespace-nowrap">Worky Latam</div>
+              <div className="bg-gradient-to-r from-emerald-400 via-green-400 to-teal-500 bg-clip-text text-transparent">
+                <div className="block md:whitespace-nowrap">La nueva red profesional</div>
+                <div className="block md:whitespace-nowrap">donde talentos y empresas conectan</div>
+              </div>
             </div>
           </h1>
         </div>
@@ -52,13 +54,13 @@ const Hero = () => {
           className="text-base sm:text-lg md:text-lg text-slate-300 mb-6 md:mb-8 max-w-3xl md:max-w-5xl mx-auto leading-relaxed px-4"
         >
           <span className="md:hidden">
-            En Worky creemos que el trabajo es más que un currículum.
+            Worky Latam es la nueva red profesional donde talento y empresas se conectan para crear oportunidades reales.
             <br className="mb-2" />
-            Creamos un espacio donde el talento y las empresas se encuentran para construir oportunidades reales.
+            Únete a la lista de espera y sé parte desde el día uno.
           </span>
           <span className="hidden md:inline">
-            En Worky creemos que el trabajo es más que un currículum. <br />
-            Creamos un espacio donde el talento y las empresas se encuentran para construir oportunidades reales.
+            Worky Latam es la nueva red profesional donde talento y empresas se conectan para crear oportunidades reales. <br />
+            Únete a la lista de espera y sé parte desde el día uno.
           </span>
         </motion.p>
 
@@ -69,7 +71,7 @@ const Hero = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-sm md:text-xl text-slate-300 mb-6 max-w-xs sm:max-w-sm md:max-w-4xl mx-auto italic px-4 md:whitespace-nowrap leading-relaxed"
         >
-          Forma parte del grupo que está dando forma a <span className="font-semibold text-emerald-400">Worky</span> desde el día uno.
+          Forma parte del grupo que está dando forma a <span className="font-semibold text-emerald-400">Worky Latam</span> desde el día uno.
         </motion.p>
 
         {/* CTA Button with Hover Border Gradient */}

@@ -24,14 +24,68 @@ const supabase = createClient(
 
 const resend = new Resend(process.env.RESEND_API_KEY!)
 
-// Email template
+// Notification email template for admin
+const getAdminNotificationHtml = (name: string, email: string, intent: string) => `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuevo registro en Worky Latam</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8fafc; color: #1e293b;">
+  <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
+    <div style="background: white; border-radius: 16px; padding: 40px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <h1 style="color: #10b981; font-size: 28px; margin: 0; font-weight: bold;">🎉 Nuevo Registro</h1>
+        <p style="color: #64748b; font-size: 14px; margin-top: 8px;">Alguien se unió a la lista de espera</p>
+      </div>
+      
+      <div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+        <h2 style="color: #1e293b; font-size: 18px; margin: 0 0 16px 0;">Información del usuario:</h2>
+        
+        <div style="margin-bottom: 16px;">
+          <p style="color: #64748b; font-size: 12px; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px;">Nombre completo</p>
+          <p style="color: #1e293b; font-size: 16px; margin: 0; font-weight: 600;">${name}</p>
+        </div>
+        
+        <div style="margin-bottom: 16px;">
+          <p style="color: #64748b; font-size: 12px; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px;">Email</p>
+          <p style="color: #1e293b; font-size: 16px; margin: 0; font-weight: 600;">${email}</p>
+        </div>
+        
+        <div>
+          <p style="color: #64748b; font-size: 12px; margin: 0 0 4px 0; text-transform: uppercase; letter-spacing: 0.5px;">Intención</p>
+          <p style="color: #1e293b; font-size: 16px; margin: 0; font-weight: 600;">${intent === 'busco-empleo' ? '💼 Busco empleo' : '🏢 Busco talento para mi empresa'}</p>
+        </div>
+      </div>
+      
+      <div style="background: #ecfdf5; border-left: 4px solid #10b981; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
+        <p style="color: #065f46; font-size: 14px; margin: 0; line-height: 1.6;">
+          <strong>Tip:</strong> Puedes ver todos los registros en tu dashboard de Supabase en la tabla <code style="background: white; padding: 2px 6px; border-radius: 4px;">waitlist</code>
+        </p>
+      </div>
+      
+      <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid #e2e8f0;">
+        <p style="color: #64748b; font-size: 12px; margin: 0;">
+          Registro en <strong style="color: #10b981;">Worky Latam</strong><br>
+          ${new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+`
+
+// Welcome email template
 const getWelcomeEmailHtml = (name: string) => `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>¡Bienvenido a Worky Latam!</title>
+  <title>¡Bienvenido a Worky Latam! Gracias por registrarte</title>
 </head>
 <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #e2e8f0;">
   <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
@@ -138,7 +192,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       throw new Error(`Supabase error: ${supabaseError.message}`)
     }
 
-    // Send welcome email
+    // Send welcome email to user
     try {
       await resend.emails.send({
         from: process.env.EMAIL_FROM!,
@@ -147,9 +201,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         html: getWelcomeEmailHtml(full_name),
       })
     } catch (emailError) {
-      console.error('Email sending error:', emailError)
+      console.error('Welcome email sending error:', emailError)
       // Don't fail the request if email fails, just log it
       // The user is still successfully added to waitlist
+    }
+
+    // Send notification email to admin
+    try {
+      await resend.emails.send({
+        from: process.env.EMAIL_FROM!,
+        to: ['contacto@workylatam.com'],
+        subject: '🎉 Nuevo registro en Worky Latam',
+        html: getAdminNotificationHtml(full_name, email, intent),
+      })
+    } catch (emailError) {
+      console.error('Admin notification email error:', emailError)
+      // Don't fail the request if admin email fails
     }
 
     // Return success response

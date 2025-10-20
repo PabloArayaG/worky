@@ -206,7 +206,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       // The user is still successfully added to waitlist
     }
 
-    // Send notification email to admin
+    // Send notification email to admin (DISABLED)
+    // Uncomment this block if you want to receive notifications
+    /*
     try {
       await resend.emails.send({
         from: process.env.EMAIL_FROM!,
@@ -218,6 +220,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       console.error('Admin notification email error:', emailError)
       // Don't fail the request if admin email fails
     }
+    */
 
     // Return success response
     return res.status(200).json({ ok: true })
